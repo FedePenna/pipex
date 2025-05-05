@@ -17,13 +17,7 @@ void	init_data(t_pipe *data, int ac, char **av, char **envp)
 	data->ac = ac;
 	data->av = av;
 	data->envp = envp;
-	data->here_doc = 0;
 	data->cmd_start = 2;
 	data->infile = -1;
 	data->outfile = -1;
-	if (ft_strncmp(av[1], "here_doc", 9) == 0)
-	{
-		data->here_doc = 1;
-		data->cmd_start = 3;
-	}
 }

@@ -24,14 +24,14 @@ void	pipex(t_pipe *data)
 	while (i < data->ac - 2)
 	{
 		if (pipe(fd) == -1)
-			exit_error("pipe", NULL);
+			exit_error(data, "pipe", NULL);
 		pid = fork();
 		if (pid < 0)
-			exit_error("fork", NULL);
+			exit_error(data, "fork", NULL);
 		if (pid == 0)
 			child_process(data, prev_fd, fd, i);
-		close(prev_fd);
-		close(fd[1]);
+		waitpid(pid, NULL, 0);
+		fd_closer(fd[1], NULL, prev_fd);
 		prev_fd = fd[0];
 		i++;
 	}

@@ -15,18 +15,14 @@
 void	open_infile(t_pipe *data)
 {
 	data->infile = open(data->av[1], O_RDONLY);
-	if (data->infile < 0)
-		exit_error("infile", data->av[1]);
+	if (data->infile < 0)	
+		ft_putstr_fd("Error: infile not found\n", 2);
 }
 
 void	open_outfile(t_pipe *data)
 {
-	if (data->here_doc)
-		data->outfile = open(data->av[data->ac - 1],
-				O_WRONLY | O_CREAT | O_APPEND, 0644);
-	else
-		data->outfile = open(data->av[data->ac - 1],
-				O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	data->outfile = open(data->av[data->ac - 1], O_WRONLY | O_CREAT | O_TRUNC,
+			0644);
 	if (data->outfile < 0)
-		exit_error("outfile", data->av[data->ac - 1]);
+		exit_error(data, "outfile", data->av[data->ac - 1]);
 }
