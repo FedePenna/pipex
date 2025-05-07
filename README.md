@@ -3,9 +3,9 @@
 A program that simulates pipes in C
 
 For this project you will have to learn how pipes work, the code is short but understanding and learning what this mini hell hound of a code does takes time.  
-I struglled a lot with leaks since you'll have to handle things such as child processes, pipes, and A LOT of fd tracking.  
+I struggled a lot with leaks since you'll have to handle things such as child processes, pipes, and A LOT of fd tracking.  
 The condition `> 2` for the fds is to avoid closing a `STDIN` or `STDOUT` or `STDERR`, that would be troublesome.  
-Another thing, this guy might leak, due to the pc I mean — in the child processes I launch commands such as `grep` or `ls`.
+Another thing, this guy might leak, and it might be because of the pc.
 
 FYI this one below is the valgrind for `ls`:
 
@@ -27,7 +27,7 @@ FYI this one below is the valgrind for `ls`:
 ```
 
 Yeah, lots of still reachable, nothing to actually worry about since it's probably because of your pc.  
-Here in 42 Rome this often happens.
+Also Here in 42 Rome this often happens.
 
 ```
 valgrind --show-leak-kinds=all ./pipex Makefile "cat" "ls" outfile                                     
